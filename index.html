@@ -4,60 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memorable Events | L'excellence dans l'organisation de fêtes et d'événements</title>
-    <!-- Importation de polices professionnelles pour sites de luxe -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         /* =========================================
-           1. Système de couleurs inspiré du logo
+           1. Système de couleurs — dérivé du logo
            ========================================= */
         :root {
-            --blush-pink: #FFC5C5;     /* Rose doux pour le fond circulaire */
-            --luxury-black: #0D0D0D;   /* Noir royal pour les textes */
-            --magenta-flower: #D1579B; /* Magenta vif pour les fleurs */
-            --deep-purple: #74326A;    /* Violet foncé pour les détails */
-            --soft-bg: #FFF5F5;        /* Fond de page doux */
+            --blush-pink: #FFC5C5;
+            --luxury-black: #0D0D0D;
+            --magenta-flower: #D1579B;
+            --deep-purple: #74326A;
+            --soft-bg: #FFF7F6;
             --white: #FFFFFF;
+            --blush-tint: #FFEDEC;
+            --ink-soft: #4A4547;
+            --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* =========================================
-           2. Configurations générales
-           ========================================= */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+        }
+
+        html {
             scroll-behavior: smooth;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
         }
 
         body {
             background-color: var(--soft-bg);
             color: var(--luxury-black);
             overflow-x: hidden;
+            cursor: default;
         }
 
-        /* Personnalisation de la barre de défilement (Scrollbar) */
-        ::-webkit-scrollbar {
-            width: 10px;
+        .serif {
+            font-family: 'Cormorant Garamond', serif;
         }
-        ::-webkit-scrollbar-track {
-            background: var(--soft-bg);
-        }
-        ::-webkit-scrollbar-thumb {
+
+        ::selection {
             background: var(--magenta-flower);
+            color: var(--white);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--soft-bg); }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--magenta-flower), var(--deep-purple));
             border-radius: 5px;
         }
 
         /* =========================================
-           3. Barre de navigation (Header)
+           Grain de fond très subtil (texture luxe)
+           ========================================= */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2000;
+            opacity: 0.02;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* =========================================
+           Curseur lumineux (desktop uniquement)
+           ========================================= */
+        .glow-cursor {
+            position: fixed;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            background: radial-gradient(circle, rgba(209,87,155,0.10) 0%, rgba(209,87,155,0) 70%);
+            transform: translate(-50%, -50%);
+            transition: opacity 0.4s ease;
+            opacity: 0;
+        }
+
+        /* =========================================
+           2. Barre de navigation
            ========================================= */
         header {
-            background-color: rgba(255, 245, 245, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 10px 8%;
+            background-color: rgba(255, 247, 246, 0.85);
+            backdrop-filter: blur(14px) saturate(160%);
+            padding: 14px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -65,96 +110,157 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(13, 13, 13, 0.05);
-            border-bottom: 1px solid rgba(255, 197, 197, 0.4);
-            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(209, 87, 155, 0.12);
+            transition: padding 0.4s var(--ease-lux), box-shadow 0.4s ease;
+        }
+
+        header.scrolled {
+            padding: 8px 8%;
+            box-shadow: 0 10px 30px rgba(116, 50, 106, 0.08);
         }
 
         .logo img {
-            height: 75px;
+            height: 68px;
             object-fit: contain;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.5s var(--ease-lux);
         }
 
-        .logo img:hover {
-            transform: scale(1.08) rotate(2deg);
-        }
+        header.scrolled .logo img { height: 52px; }
+
+        .logo img:hover { transform: scale(1.06) rotate(-2deg); }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 35px;
+            gap: 46px;
         }
 
         nav ul li a {
             color: var(--luxury-black);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-weight: 500;
+            font-size: 1.02rem;
+            letter-spacing: 0.02em;
             position: relative;
             padding: 5px 0;
-            transition: color 0.3s ease;
         }
 
         nav ul li a::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 3px;
+            height: 1.5px;
             bottom: 0;
             left: 0;
-            background-color: var(--magenta-flower);
-            transition: width 0.3s ease;
+            background: linear-gradient(90deg, var(--magenta-flower), var(--deep-purple));
+            transition: width 0.4s var(--ease-lux);
         }
 
-        nav ul li a:hover {
-            color: var(--magenta-flower);
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
+        nav ul li a:hover::after { width: 100%; }
 
         /* =========================================
-           4. Section principale (Hero)
+           3. Hero
            ========================================= */
         .hero {
             min-height: 100vh;
-            padding-top: 110px; /* يعطي مساحة للهيدر الثابت */
+            padding-top: 120px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding-left: 8%;
             padding-right: 8%;
-            max-width: 1400px;
+            max-width: 1440px;
             margin: 0 auto;
             position: relative;
+            overflow: hidden;
         }
 
-        .hero-text {
-            flex: 1;
-            max-width: 600px;
-            padding-right: 40px;
+        /* pétales flottants d'ambiance */
+        .petal {
+            position: absolute;
+            border-radius: 100% 0 100% 0;
+            background: linear-gradient(135deg, var(--magenta-flower), var(--deep-purple));
+            opacity: 0.14;
+            filter: blur(0.5px);
+            animation: drift 14s ease-in-out infinite;
+        }
+        .petal.p1 { width: 90px; height: 90px; top: 12%; left: 4%; animation-delay: 0s; }
+        .petal.p2 { width: 50px; height: 50px; top: 70%; left: 12%; animation-delay: -4s; border-radius: 0 100% 0 100%; }
+        .petal.p3 { width: 65px; height: 65px; top: 24%; right: 6%; animation-delay: -8s; }
+        .petal.p4 { width: 34px; height: 34px; top: 82%; right: 22%; animation-delay: -2s; border-radius: 0 100% 0 100%; }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0,0) rotate(0deg); }
+            50% { transform: translate(18px,-26px) rotate(25deg); }
+        }
+
+        .hero-text { flex: 1; max-width: 620px; padding-right: 40px; position: relative; z-index: 2; }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--deep-purple);
+            margin-bottom: 22px;
+        }
+
+        .eyebrow::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--magenta-flower);
         }
 
         .hero-text h1 {
-            font-size: 3.8rem;
-            font-weight: 900;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.4rem;
+            font-weight: 600;
+            font-style: italic;
             color: var(--luxury-black);
-            line-height: 1.2;
-            margin-bottom: 20px;
+            line-height: 1.12;
+            margin-bottom: 26px;
+            letter-spacing: 0.01em;
         }
 
-        .hero-text h1 span {
-            color: var(--magenta-flower);
-            position: relative;
+        .hero-text h1 .reveal-line { display: block; overflow: hidden; }
+        .hero-text h1 .reveal-line span {
+            display: inline-block;
+            transform: translateY(105%);
+            animation: line-up 1s var(--ease-lux) forwards;
+        }
+        .hero-text h1 .reveal-line:nth-child(1) span { animation-delay: 0.15s; }
+        .hero-text h1 .reveal-line:nth-child(2) span { animation-delay: 0.32s; }
+
+        @keyframes line-up {
+            to { transform: translateY(0); }
+        }
+
+        .hero-text h1 em {
+            font-style: italic;
+            background: linear-gradient(100deg, var(--magenta-flower), var(--deep-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .hero-text p {
-            font-size: 1.2rem;
-            color: #444;
-            line-height: 1.8;
-            margin-bottom: 35px;
+            font-size: 1.12rem;
+            color: var(--ink-soft);
+            line-height: 1.85;
+            margin-bottom: 40px;
+            max-width: 520px;
+            opacity: 0;
+            animation: fade-up 1s var(--ease-lux) forwards;
+            animation-delay: 0.55s;
+        }
+
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-image-container {
@@ -163,146 +269,198 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            z-index: 2;
         }
 
-        /* Cadre circulaire luxueux */
+        .hero-ring {
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            border: 1px dashed rgba(209, 87, 155, 0.35);
+            animation: spin 40s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         .hero-circle-bg {
-            width: 450px;
-            height: 450px;
-            background-color: var(--blush-pink);
+            width: 440px;
+            height: 440px;
+            background: radial-gradient(circle at 35% 30%, #FFE1E1, var(--blush-pink));
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 20px 40px rgba(209, 87, 155, 0.15);
-            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 30px 70px rgba(209, 87, 155, 0.22), inset 0 0 0 10px rgba(255,255,255,0.5);
+            animation: float 7s ease-in-out infinite, scale-in 1s var(--ease-lux) both;
+            animation-delay: 0s, 0.2s;
+        }
+
+        @keyframes scale-in {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .hero-circle-bg img {
-            width: 90%;
-            height: 90%;
+            width: 88%;
+            height: 88%;
             object-fit: contain;
             border-radius: 50%;
         }
 
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-16px); }
         }
 
-        /* Boutons d'action */
         .cta-buttons {
             display: flex;
-            gap: 20px;
+            gap: 22px;
             flex-wrap: wrap;
+            opacity: 0;
+            animation: fade-up 1s var(--ease-lux) forwards;
+            animation-delay: 0.75s;
+        }
+
+        .btn-primary, .btn-secondary {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--magenta-flower), var(--deep-purple));
             color: var(--white);
-            padding: 14px 35px;
+            padding: 15px 38px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 0.5px;
-            box-shadow: 0 10px 25px rgba(209, 87, 155, 0.3);
-            transition: all 0.3s ease;
-            white-space: nowrap;
+            font-weight: 600;
+            font-size: 1.05rem;
+            letter-spacing: 0.03em;
+            box-shadow: 0 12px 28px rgba(209, 87, 155, 0.32);
+            transition: transform 0.45s var(--ease-lux), box-shadow 0.45s var(--ease-lux);
         }
 
+        .btn-primary span { position: relative; z-index: 2; }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--deep-purple), var(--magenta-flower));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .btn-primary:hover::before { opacity: 1; }
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(209, 87, 155, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 18px 36px rgba(209, 87, 155, 0.45);
         }
 
         .btn-secondary {
-            border: 2px solid var(--luxury-black);
+            border: 1.5px solid var(--luxury-black);
             color: var(--luxury-black);
-            padding: 12px 35px;
+            padding: 13px 38px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            white-space: nowrap;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.45s var(--ease-lux);
         }
 
         .btn-secondary:hover {
             background-color: var(--luxury-black);
             color: var(--white);
-            transform: translateY(-3px);
+            transform: translateY(-4px);
         }
 
         /* =========================================
-           5. Section Services & Portfolio
+           4. Services & Portfolio
            ========================================= */
         .services-section {
-            padding: 100px 8%;
-            max-width: 1400px;
+            padding: 130px 8% 100px;
+            max-width: 1440px;
             margin: 0 auto;
+            position: relative;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 90px;
+        }
+
+        .section-header .eyebrow { justify-content: center; }
+        .section-header .eyebrow::before, .section-header .eyebrow::after {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--magenta-flower);
         }
 
         .section-header h2 {
-            font-size: 3rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.4rem;
+            font-weight: 600;
+            font-style: italic;
             color: var(--luxury-black);
-            font-weight: 800;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
 
         .section-header p {
-            font-size: 1.2rem;
-            color: #666;
+            font-size: 1.12rem;
+            color: var(--ink-soft);
         }
 
-        /* تصحيح المسافة في السيلكتور هنا لجعل الخط يظهر بشكل ممتاز */
-        .section-header::after {
-            content: '';
-            display: block;
-            width: 70px;
-            height: 4px;
-            background-color: var(--magenta-flower);
-            margin: 15px auto 0 auto;
-            border-radius: 2px;
+        .bloom-divider {
+            width: 60px;
+            height: 60px;
+            margin: 26px auto 0;
+            opacity: 0.9;
         }
+
+        /* Fade-in-up générique au scroll */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(46px);
+            transition: opacity 0.9s var(--ease-lux), transform 0.9s var(--ease-lux);
+            transition-delay: var(--d, 0s);
+        }
+        .fade-in-up.appear { opacity: 1; transform: translateY(0); }
 
         /* Carte Bulle de Joie */
         .bubble-showcase {
             display: flex;
             background-color: var(--white);
-            border-radius: 24px;
+            border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 15px 40px rgba(13, 13, 13, 0.03);
-            margin-bottom: 100px;
-            border: 1px solid rgba(255, 197, 197, 0.3);
+            box-shadow: 0 20px 55px rgba(13, 13, 13, 0.05);
+            margin-bottom: 110px;
+            border: 1px solid rgba(255, 197, 197, 0.4);
+            transition: box-shadow 0.5s var(--ease-lux), transform 0.5s var(--ease-lux);
         }
 
-        .bubble-img {
-            flex: 1.2;
-            height: 480px;
-            overflow: hidden;
+        .bubble-showcase:hover {
+            box-shadow: 0 30px 70px rgba(209, 87, 155, 0.16);
+            transform: translateY(-6px);
         }
+
+        .bubble-img { flex: 1.2; height: 500px; overflow: hidden; }
 
         .bubble-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: transform 0.9s var(--ease-lux);
         }
 
-        .bubble-showcase:hover .bubble-img img {
-            transform: scale(1.06);
-        }
+        .bubble-showcase:hover .bubble-img img { transform: scale(1.07); }
 
         .bubble-text {
             flex: 1;
-            padding: 60px;
+            padding: 65px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -310,296 +468,267 @@
 
         .tag {
             align-self: flex-start;
-            background-color: rgba(255, 197, 197, 0.4);
+            background-color: var(--blush-tint);
             color: var(--deep-purple);
-            padding: 6px 16px;
+            padding: 7px 18px;
             border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            margin-bottom: 22px;
         }
 
         .bubble-text h3 {
-            font-size: 2.2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
             color: var(--luxury-black);
             margin-bottom: 20px;
-            font-weight: 800;
         }
 
         .bubble-text p {
-            color: #555;
-            font-size: 1.15rem;
+            color: var(--ink-soft);
+            font-size: 1.12rem;
             line-height: 1.9;
         }
 
         /* Carte Backdrops & Décors */
         .decor-showcase {
             background-color: var(--white);
-            border-radius: 24px;
-            padding: 50px;
-            box-shadow: 0 15px 40px rgba(13, 13, 13, 0.03);
-            border: 1px solid rgba(255, 197, 197, 0.3);
+            border-radius: 28px;
+            padding: 55px;
+            box-shadow: 0 20px 55px rgba(13, 13, 13, 0.05);
+            border: 1px solid rgba(255, 197, 197, 0.4);
         }
 
-        .decor-header {
-            margin-bottom: 40px;
-            text-align: left;
-        }
+        .decor-header { margin-bottom: 45px; text-align: left; }
 
         .decor-header h3 {
-            font-size: 2.2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
             color: var(--luxury-black);
-            margin-bottom: 15px;
-            font-weight: 800;
+            margin-bottom: 16px;
         }
 
         .decor-header p {
-            color: #555;
-            font-size: 1.15rem;
+            color: var(--ink-soft);
+            font-size: 1.12rem;
             max-width: 800px;
-            line-height: 1.8;
+            line-height: 1.85;
         }
 
         .walls-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
+            gap: 26px;
         }
 
         .wall-item {
             position: relative;
-            border-radius: 16px;
+            border-radius: 18px;
             overflow: hidden;
-            height: 320px;
-            box-shadow: 0 10px 25px rgba(13, 13, 13, 0.05);
+            height: 330px;
+            box-shadow: 0 12px 28px rgba(13, 13, 13, 0.06);
         }
 
         .wall-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: all 0.5s ease;
+            transition: transform 0.7s var(--ease-lux), filter 0.6s ease;
+            filter: saturate(0.94);
         }
 
         .wall-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(13, 13, 13, 0.8), rgba(209, 87, 155, 0.2));
+            inset: 0;
+            background: linear-gradient(to top, rgba(13,13,13,0.85) 0%, rgba(116,50,106,0.25) 55%, rgba(116,50,106,0) 100%);
             display: flex;
             align-items: flex-end;
-            padding: 25px;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            padding: 26px;
         }
 
         .wall-overlay h4 {
             color: var(--white);
-            font-size: 1.3rem;
-            font-weight: 700;
-            transform: translateY(20px);
-            transition: transform 0.4s ease;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-style: italic;
+            transform: translateY(24px);
+            opacity: 0;
+            transition: all 0.5s var(--ease-lux);
         }
 
-        .wall-item:hover img {
-            transform: scale(1.1);
+        .wall-overlay::after {
+            content: '';
+            position: absolute;
+            bottom: 26px;
+            left: 26px;
+            width: 0;
+            height: 1.5px;
+            background: var(--blush-pink);
+            transition: width 0.5s var(--ease-lux) 0.05s;
         }
 
-        .wall-item:hover .wall-overlay {
-            opacity: 1;
-        }
-
-        .wall-item:hover .wall-overlay h4 {
-            transform: translateY(0);
-        }
+        .wall-item:hover img { transform: scale(1.12); filter: saturate(1.05); }
+        .wall-item:hover .wall-overlay h4 { transform: translateY(0); opacity: 1; }
+        .wall-item:hover .wall-overlay::after { width: 46px; }
 
         /* =========================================
-           6. Pied de page (Footer)
+           5. Pied de page
            ========================================= */
         footer {
             background-color: var(--luxury-black);
             color: rgba(255, 255, 255, 0.8);
-            padding: 80px 8% 30px 8%;
+            padding: 100px 8% 34px;
             text-align: center;
             position: relative;
-            border-top: 4px solid var(--magenta-flower);
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blush-pink), var(--magenta-flower), var(--deep-purple), var(--magenta-flower), var(--blush-pink));
+            background-size: 200% 100%;
+            animation: shimmer 6s linear infinite;
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% 0; }
         }
 
         footer h2 {
+            font-family: 'Cormorant Garamond', serif;
             color: var(--white);
-            font-size: 2.8rem;
-            font-weight: 800;
+            font-size: 3rem;
+            font-weight: 600;
+            font-style: italic;
             margin-bottom: 20px;
         }
 
         footer p.footer-tagline {
-            font-size: 1.3rem;
+            font-size: 1.28rem;
+            font-family: 'Cormorant Garamond', serif;
             color: var(--blush-pink);
-            margin-bottom: 40px;
+            margin-bottom: 46px;
+            letter-spacing: 0.02em;
         }
 
-        .whatsapp-section {
-            margin-bottom: 50px;
-        }
+        .whatsapp-section { margin-bottom: 55px; }
 
         .whatsapp-btn-luxury {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 13px;
             background-color: #25D366;
             color: white;
-            padding: 16px 45px;
+            padding: 17px 46px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 1.2rem;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
-            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.15rem;
+            box-shadow: 0 12px 32px rgba(37, 211, 102, 0.28);
+            transition: all 0.4s var(--ease-lux);
+            position: relative;
+        }
+
+        .whatsapp-btn-luxury::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50px;
+            border: 1.5px solid rgba(37, 211, 102, 0.5);
+            animation: pulse-ring 2.4s var(--ease-lux) infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 0.9; }
+            100% { transform: scale(1.18); opacity: 0; }
         }
 
         .whatsapp-btn-luxury:hover {
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
+            box-shadow: 0 18px 40px rgba(37, 211, 102, 0.45);
         }
 
         .footer-divider {
             height: 1px;
-            background-color: rgba(255, 255, 255, 0.1);
-            margin: 40px 0 20px 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            margin: 42px 0 22px;
         }
 
         .copyright {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: 0.02em;
         }
 
         /* =========================================
-           7. Animations au défilement (Scroll Animations)
-           ========================================= */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .fade-in-up.appear {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* =========================================
-           8. Adaptabilité Écrans & Mobiles (Responsive)
+           6. Responsive
            ========================================= */
         @media (max-width: 1024px) {
-            .hero {
-                padding-left: 5%;
-                padding-right: 5%;
-            }
-            .hero-text h1 {
-                font-size: 3rem;
-            }
-            .hero-circle-bg {
-                width: 380px;
-                height: 380px;
-            }
+            .hero { padding-left: 5%; padding-right: 5%; }
+            .hero-text h1 { font-size: 3.4rem; }
+            .hero-circle-bg { width: 380px; height: 380px; }
+            .hero-ring { width: 450px; height: 450px; }
         }
 
         @media (max-width: 992px) {
-            header {
-                padding: 15px 5%;
-            }
+            header { padding: 15px 5%; }
+            nav ul { gap: 26px; }
             .hero {
                 flex-direction: column-reverse;
                 justify-content: center;
                 text-align: center;
-                padding-top: 140px;
+                padding-top: 150px;
                 height: auto;
                 min-height: auto;
             }
             .hero-text {
                 padding-right: 0;
-                margin-top: 40px;
+                margin-top: 46px;
                 margin-bottom: 60px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
-            .cta-buttons {
-                justify-content: center;
-            }
-            .bubble-showcase {
-                flex-direction: column;
-            }
-            .bubble-img {
-                height: 350px;
-            }
-            .bubble-text {
-                padding: 40px 30px;
-            }
-            .decor-showcase {
-                padding: 35px 20px;
-            }
-            .decor-header {
-                text-align: center;
-            }
+            .eyebrow::before { display: none; }
+            .cta-buttons { justify-content: center; }
+            .bubble-showcase { flex-direction: column; }
+            .bubble-img { height: 340px; }
+            .bubble-text { padding: 42px 32px; }
+            .decor-showcase { padding: 36px 22px; }
+            .decor-header { text-align: center; }
         }
 
         @media (max-width: 600px) {
-            /* تعديل الهيدر في التليفونات باش يبان منسق وميختفيش */
-            header {
-                flex-direction: column;
-                gap: 12px;
-                padding: 12px 20px;
-            }
-            .logo img {
-                height: 55px;
-            }
-            nav ul {
-                gap: 20px;
-            }
-            nav ul li a {
-                font-size: 0.95rem;
-            }
-            .hero {
-                padding-top: 160px;
-            }
-            .hero-text h1 {
-                font-size: 2.2rem;
-            }
-            .hero-text p {
-                font-size: 1.05rem;
-            }
-            .hero-circle-bg {
-                width: 280px;
-                height: 280px;
-            }
-            .section-header h2 {
-                font-size: 2.2rem;
-            }
-            .bubble-text h3, .decor-header h3 {
-                font-size: 1.7rem;
-            }
-            footer h2 {
-                font-size: 2rem;
-            }
-            footer p.footer-tagline {
-                font-size: 1.1rem;
-            }
-            .whatsapp-btn-luxury {
-                padding: 14px 25px;
-                font-size: 1rem;
-                width: 100%;
-                justify-content: center;
-            }
+            header { flex-direction: column; gap: 12px; padding: 14px 20px; }
+            .logo img { height: 52px; }
+            header.scrolled .logo img { height: 42px; }
+            nav ul { gap: 20px; }
+            nav ul li a { font-size: 0.92rem; }
+            .hero { padding-top: 168px; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-text p { font-size: 1.02rem; }
+            .hero-circle-bg { width: 260px; height: 260px; }
+            .hero-ring { width: 320px; height: 320px; }
+            .section-header h2 { font-size: 2.3rem; }
+            .bubble-text h3, .decor-header h3 { font-size: 1.8rem; }
+            footer h2 { font-size: 2.1rem; }
+            footer p.footer-tagline { font-size: 1.1rem; }
+            .whatsapp-btn-luxury { padding: 15px 26px; font-size: 1rem; width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Barre de navigation (Header) -->
-    <header>
+    <div class="glow-cursor" id="glowCursor"></div>
+
+    <header id="siteHeader">
         <div class="logo">
             <img src="images/memorable.png" alt="Memorable Events">
         </div>
@@ -612,31 +741,39 @@
         </nav>
     </header>
 
-    <!-- Section d'accueil (Hero) -->
     <section class="hero" id="home">
+        <span class="petal p1"></span>
+        <span class="petal p2"></span>
+        <span class="petal p3"></span>
+        <span class="petal p4"></span>
+
         <div class="hero-text">
-            <h1 class="fade-in-up">Nous créons des <span>souvenirs</span> luxueux et inoubliables</h1>
-            <p class="fade-in-up">Chez Memorable Events, nous dépassons les limites de l'ordinaire pour donner vie à des expériences exceptionnelles. Une organisation clé en main, des décors enchanteurs et une attention méticuleuse portée aux moindres détails pour faire de votre événement une œuvre d'art intemporelle.</p>
-            <div class="cta-buttons fade-in-up">
-                <a href="#contact" class="btn-primary">Réservez maintenant</a>
+            <span class="eyebrow">Organisation d'événements de prestige</span>
+            <h1>
+                <span class="reveal-line"><span>Nous créons des <em>souvenirs</em></span></span>
+                <span class="reveal-line"><span>luxueux et inoubliables</span></span>
+            </h1>
+            <p>Chez Memorable Events, nous dépassons les limites de l'ordinaire pour donner vie à des expériences exceptionnelles. Une organisation clé en main, des décors enchanteurs et une attention méticuleuse portée aux moindres détails pour faire de votre événement une œuvre d'art intemporelle.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn-primary"><span>Réservez maintenant</span></a>
                 <a href="#services" class="btn-secondary">Explorer nos réalisations</a>
             </div>
         </div>
-        <div class="hero-image-container fade-in-up">
+        <div class="hero-image-container">
+            <div class="hero-ring"></div>
             <div class="hero-circle-bg">
                 <img src="images/memorable.png" alt="Memorable Events Showcase">
             </div>
         </div>
     </section>
 
-    <!-- Portfolio de Services -->
     <section class="services-section" id="services">
         <div class="section-header fade-in-up">
+            <span class="eyebrow">Nos réalisations</span>
             <h2>Nos Services Exclusifs</h2>
             <p>Une fusion de créativité et d'excellence, conçue sur mesure pour les goûts les plus raffinés.</p>
         </div>
 
-        <!-- Service Bulle de Joie -->
         <div class="bubble-showcase fade-in-up">
             <div class="bubble-img">
                 <img src="images/bubble.png" alt="Bulle de joie interactive pour enfants">
@@ -648,50 +785,39 @@
             </div>
         </div>
 
-        <!-- Service Backdrops -->
         <div class="decor-showcase fade-in-up">
             <div class="decor-header">
                 <h3>Backdrops & Décors de Scène</h3>
                 <p>Le plan parfait pour chaque photo. Vermeil ou contemporain, nous créons des backdrops personnalisés aux styles variés pour s'adapter à votre thème. Des designs modernes et élégants aux structures audacieuses, nous faisons de votre scène le centre d'attention principal.</p>
             </div>
 
-            <!-- Grille des décors -->
             <div class="walls-grid">
-                <div class="wall-item">
+                <div class="wall-item fade-in-up" style="--d:0.05s">
                     <img src="images/wall1.png" alt="Décor de mur style 1">
-                    <div class="wall-overlay">
-                        <h4>Décor de Mur Classique & Luxueux</h4>
-                    </div>
+                    <div class="wall-overlay"><h4>Décor de Mur Classique & Luxueux</h4></div>
                 </div>
-                <div class="wall-item">
+                <div class="wall-item fade-in-up" style="--d:0.15s">
                     <img src="images/wall2.png" alt="Décor de mur style 2">
-                    <div class="wall-overlay">
-                        <h4>Backdrops de Photographie Modernes</h4>
-                    </div>
+                    <div class="wall-overlay"><h4>Backdrops de Photographie Modernes</h4></div>
                 </div>
-                <div class="wall-item">
+                <div class="wall-item fade-in-up" style="--d:0.25s">
                     <img src="images/wall3.png" alt="Décor de mur style 3">
-                    <div class="wall-overlay">
-                        <h4>Scénographie de Prestige pour Événements</h4>
-                    </div>
+                    <div class="wall-overlay"><h4>Scénographie de Prestige pour Événements</h4></div>
                 </div>
-                <div class="wall-item">
+                <div class="wall-item fade-in-up" style="--d:0.35s">
                     <img src="images/wall4.png" alt="Décor de mur style 4">
-                    <div class="wall-overlay">
-                        <h4>Thèmes Entièrement Personnalisés</h4>
-                    </div>
+                    <div class="wall-overlay"><h4>Thèmes Entièrement Personnalisés</h4></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pied de page & Contact -->
     <footer id="contact">
         <div class="fade-in-up">
             <h2>Planifions votre prochain événement ensemble</h2>
             <p class="footer-tagline">Memorable Events | Parce que chaque instant mérite le luxe</p>
         </div>
-        
+
         <div class="whatsapp-section fade-in-up">
             <a href="https://wa.me/212674155948" class="whatsapp-btn-luxury" target="_blank">
                 <span>Contactez-nous directement sur WhatsApp</span>
@@ -702,25 +828,48 @@
         <p class="copyright">&copy; 2026 Memorable Events. Tous droits réservés. Conçu avec amour et prestige.</p>
     </footer>
 
-    <!-- Script d'animation (Intersection Observer) -->
     <script>
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
+        // Révélation au défilement avec délai en cascade
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('appear');
-                    observer.unobserve(entry.target);
+                    const el = entry.target;
+                    if (!el.style.getPropertyValue('--d')) {
+                        el.style.setProperty('--d', (i % 4) * 0.08 + 's');
+                    }
+                    el.classList.add('appear');
+                    observer.unobserve(el);
                 }
             });
         }, observerOptions);
+        document.querySelectorAll('.fade-in-up').forEach((el) => observer.observe(el));
 
-        document.querySelectorAll('.fade-in-up').forEach(element => {
-            observer.observe(element);
+        // En-tête compacté au scroll
+        const header = document.getElementById('siteHeader');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 40);
+        }, { passive: true });
+
+        // Lueur qui suit le curseur (désactivée sur tactile)
+        const glow = document.getElementById('glowCursor');
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+            window.addEventListener('mousemove', (e) => {
+                glow.style.opacity = '1';
+                glow.style.left = e.clientX + 'px';
+                glow.style.top = e.clientY + 'px';
+            });
+        }
+
+        // Effet magnétique léger sur le bouton principal
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach((btn) => {
+            btn.addEventListener('mousemove', (e) => {
+                const r = btn.getBoundingClientRect();
+                const x = e.clientX - r.left - r.width / 2;
+                const y = e.clientY - r.top - r.height / 2;
+                btn.style.transform = `translate(${x * 0.12}px, ${y * 0.25 - 4}px)`;
+            });
+            btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
         });
     </script>
 
