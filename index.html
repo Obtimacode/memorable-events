@@ -1,35 +1,35 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memorable Events | الفخامة في تنظيم الحفلات والمناسبات</title>
-    <!-- استيراد خطوط احترافية للمواقع الفاخرة -->
+    <title>Memorable Events | L'excellence dans l'organisation de fêtes et d'événements</title>
+    <!-- Importation de polices professionnelles pour sites de luxe -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         /* =========================================
-           1. نظام الألوان المستوحى من اللوغو بدقة
+           1. Système de couleurs inspiré du logo
            ========================================= */
         :root {
-            --blush-pink: #FFC5C5;     /* اللون الوردي الهادئ للخلفية الدائرية */
-            --luxury-black: #0D0D0D;   /* الأسود الملكي الفخم للحرف والكتابة */
-            --magenta-flower: #D1579B; /* اللون الأرجواني/الميجينتا الزاهي للورد */
-            --deep-purple: #74326A;    /* البنفسجي الغامق للتفاصيل والظلال */
-            --soft-bg: #FFF5F5;        /* خلفية الموقع ناعمة ومريحة للعين */
+            --blush-pink: #FFC5C5;     /* Rose doux pour le fond circulaire */
+            --luxury-black: #0D0D0D;   /* Noir royal pour les textes */
+            --magenta-flower: #D1579B; /* Magenta vif pour les fleurs */
+            --deep-purple: #74326A;    /* Violet foncé pour les détails */
+            --soft-bg: #FFF5F5;        /* Fond de page doux */
             --white: #FFFFFF;
         }
 
         /* =========================================
-           2. إعدادات عامة واحترافية
+           2. Configurations générales
            ========================================= */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
         }
 
@@ -39,7 +39,7 @@
             overflow-x: hidden;
         }
 
-        /* تخصيص شريط التمرير (Scrollbar) */
+        /* Personnalisation de la barre de défilement (Scrollbar) */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -52,7 +52,7 @@
         }
 
         /* =========================================
-           3. شريط التنقل العلوي (Sleek Header)
+           3. Barre de navigation (Header)
            ========================================= */
         header {
             background-color: rgba(255, 245, 245, 0.95);
@@ -102,7 +102,7 @@
             width: 0;
             height: 3px;
             bottom: 0;
-            right: 0;
+            left: 0;
             background-color: var(--magenta-flower);
             transition: width 0.3s ease;
         }
@@ -116,7 +116,7 @@
         }
 
         /* =========================================
-           4. الواجهة الرئيسية الاستعراضية (Hero)
+           4. Section principale (Hero)
            ========================================= */
         .hero {
             height: 100vh;
@@ -132,7 +132,7 @@
         .hero-text {
             flex: 1;
             max-width: 600px;
-            padding-left: 40px;
+            padding-right: 40px;
         }
 
         .hero-text h1 {
@@ -149,7 +149,7 @@
         }
 
         .hero-text p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #444;
             line-height: 1.8;
             margin-bottom: 35px;
@@ -163,7 +163,7 @@
             position: relative;
         }
 
-        /* إطار دائري فخم يحاكي تصميم اللوغو */
+        /* Cadre circulaire luxueux */
         .hero-circle-bg {
             width: 450px;
             height: 450px;
@@ -189,7 +189,7 @@
             100% { transform: translateY(0px); }
         }
 
-        /* أزرار الأكشن الاحترافية */
+        /* Boutons d'action */
         .cta-buttons {
             display: flex;
             gap: 20px;
@@ -231,7 +231,7 @@
         }
 
         /* =========================================
-           5. قسم الخدمات والبورتفوليو الفاخر
+           5. Section Services & Portfolio
            ========================================= */
         .services-section {
             padding: 100px 8%;
@@ -266,7 +266,7 @@
             border-radius: 2px;
         }
 
-        /* كارت خدمة الفقاعة الكبيرة */
+        /* Carte Bulle de Joie */
         .bubble-showcase {
             display: flex;
             background-color: var(--white);
@@ -326,7 +326,7 @@
             line-height: 1.9;
         }
 
-        /* كارت شبكة جدران الديكور (Walls) */
+        /* Carte Backdrops & Décors */
         .decor-showcase {
             background-color: var(--white);
             border-radius: 24px;
@@ -337,7 +337,7 @@
 
         .decor-header {
             margin-bottom: 40px;
-            text-align: right;
+            text-align: left;
         }
 
         .decor-header h3 {
@@ -375,7 +375,6 @@
             transition: all 0.5s ease;
         }
 
-        /* تأثير فخم عند تحريك الفأرة فوق الديكورات */
         .wall-overlay {
             position: absolute;
             top: 0;
@@ -411,7 +410,7 @@
         }
 
         /* =========================================
-           6. تذييل الصفحة الفاخر (Footer)
+           6. Pied de page (Footer)
            ========================================= */
         footer {
             background-color: var(--luxury-black);
@@ -471,7 +470,7 @@
         }
 
         /* =========================================
-           7. نظام الانميشن المتقدم (Scroll Animations)
+           7. Animations au défilement (Scroll Animations)
            ========================================= */
         .fade-in-up {
             opacity: 0;
@@ -485,7 +484,7 @@
         }
 
         /* =========================================
-           8. توازن شاشات الموبايل (Responsive)
+           8. Adaptabilité mobile (Responsive)
            ========================================= */
         @media (max-width: 992px) {
             .hero {
@@ -496,7 +495,7 @@
                 height: auto;
             }
             .hero-text {
-                padding-left: 0;
+                padding-right: 0;
                 margin-top: 40px;
                 margin-bottom: 60px;
             }
@@ -517,35 +516,35 @@
                 padding: 40px 25px;
             }
             nav ul {
-                display: none; /* يمكن دمج قائمة موبايل مستقبلاً */
+                display: none;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- الهيدر الاحترافي -->
+    <!-- Barre de navigation -->
     <header>
         <div class="logo">
             <img src="images/memorable.png" alt="Memorable Events">
         </div>
         <nav>
             <ul>
-                <li><a href="#home">الرئيسية</a></li>
-                <li><a href="#services">بورتفوليو الخدمات</a></li>
-                <li><a href="#contact">حجز موعد</a></li>
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- واجهة الدخول (Hero) -->
-    section class="hero" id="home">
+    <!-- Section d'accueil (Hero) -->
+    <section class="hero" id="home">
         <div class="hero-text">
-            <h1 class="fade-in-up">نصنع لكم <span>ذكريات</span> فاخرة لا تُنسى</h1>
-            <p class="fade-in-up">في Memorable Events، نتجاوز حدود المألوف لنصنع تجارب استثنائية. تنظيم متكامل، ديكورات ساحرة، واهتمام دقيق بأصغر التفاصيل ليصبح حدثك لوحة فنية تخلد في الذاكرة.</p>
+            <h1 class="fade-in-up">Nous créons des <span>souvenirs</span> luxueux et inoubliables</h1>
+            <p class="fade-in-up">Chez Memorable Events, nous dépassons les limites de l'ordinaire pour donner vie à des expériences exceptionnelles. Une organisation clé en main, des décors enchanteurs et une attention méticuleuse portée aux moindres détails pour faire de votre événement une œuvre d'art intemporelle.</p>
             <div class="cta-buttons fade-in-up">
-                <a href="#contact" class="btn-primary">احجز حفلتك الآن</a>
-                <a href="#services" class="btn-secondary">استكشف أعمالنا</a>
+                <a href="#contact" class="btn-primary">Réservez maintenant</a>
+                <a href="#services" class="btn-secondary">Explorer nos réalisations</a>
             </div>
         </div>
         <div class="hero-image-container fade-in-up">
@@ -555,80 +554,80 @@
         </div>
     </section>
 
-    <!-- بورتفوليو الخدمات المتكامل -->
+    <!-- Portfolio de Services -->
     <section class="services-section" id="services">
         <div class="section-header fade-in-up">
-            <h2>خدماتنا الحصرية</h2>
-            <p>توليفة من الإبداع والتميز مصممة خصيصاً لتلبي أرقى الأذواق</p>
+            <h2>Nos Services Exclusifs</h2>
+            <p>Une fusion de créativité et d'excellence, conçue sur mesure pour les goûts les plus raffinés.</p>
         </div>
 
-        <!-- عرض خدمة الفقاعة الكبيرة للأطفال -->
+        <!-- Service Bulle de Joie -->
         <div class="bubble-showcase fade-in-up">
             <div class="bubble-img">
-                <img src="images/bubble.png" alt="فقاعة المرح التفاعلية للأطفال">
+                <img src="images/bubble.png" alt="Bulle de joie interactive pour enfants">
             </div>
             <div class="bubble-text">
-                <span class="tag">ترفيه حصري وعصري</span>
-                <h3>فقاعة المرح الفاخرة للأطفال</h3>
-                <p>نوفر تجربة تفاعلية مليئة بالسحر والبهجة عبر "الفقاعة الكبيرة" المجهزة بالكامل. مساحة لعب آمنة ومبتكرة تمنح الأطفال تجربة بصرية وحركية فريدة، صُممت بعناية لتكون الحدث الأبرز في أعياد الميلاد والمناسبات الخاصة وتضفي جواً من المغامرة والبهجة.</p>
+                <span class="tag">Divertissement Exclusif & Moderne</span>
+                <h3>La Bulle de Joie Luxueuse pour Enfants</h3>
+                <p>Nous offrons une expérience interactive pleine de magie et de joie grâce à notre "Grande Bulle" entièrement équipée. Un espace de jeu sécurisé et innovant qui offre aux enfants une expérience visuelle et motrice unique, soigneusement conçue pour être le clou des anniversaires ou des événements spéciaux.</p>
             </div>
         </div>
 
-        <!-- عرض جدران الديكور المتنوعة خلفيات التصوير -->
+        <!-- Service Backdrops -->
         <div class="decor-showcase fade-in-up">
             <div class="decor-header">
-                <h3>حوائط الخلفيات وديكورات المنصات</h3>
-                <p>الخلفية المثالية لكل صورة تلتقطها. نبتكر حوائط ديكور (Backdrops) مخصصة ومتنوعة الأنماط لتلائم ثيم حفلتك بشكل مطلق. من التصاميم العصرية الأنيقة، إلى الديكورات الجريئة والمبتكرة، نضمن جعل منصة الحفل نقطة الجذب الأساسية التي تبهر الضيوف.</p>
+                <h3>Backdrops & Décors de Scène</h3>
+                <p>Le plan parfait pour chaque photo. Vermeil ou contemporain, nous créons des backdrops personnalisés aux styles variés pour s'adapter à votre thème. Des designs modernes et élégants aux structures audacieuses, nous faisons de votre scène le centre d'attention principal.</p>
             </div>
 
-            <!-- شبكة الديكورات الأربعة المخصصة -->
+            <!-- Grille des décors -->
             <div class="walls-grid">
                 <div class="wall-item">
-                    <img src="images/wall1.png" alt="تصميم ديكور راقي نمط 1">
+                    <img src="images/wall1.png" alt="Décor de mur style 1">
                     <div class="wall-overlay">
-                        <h4>ديكور الحائط الكلاسيكي الفاخر</h4>
+                        <h4>Décor de Mur Classique & Luxueux</h4>
                     </div>
                 </div>
                 <div class="wall-item">
-                    <img src="images/wall2.png" alt="تصميم ديكور راقي نمط 2">
+                    <img src="images/wall2.png" alt="Décor de mur style 2">
                     <div class="wall-overlay">
-                        <h4>خلفيات التصوير العصرية الحديثة</h4>
+                        <h4>Backdrops de Photographie Modernes</h4>
                     </div>
                 </div>
                 <div class="wall-item">
-                    <img src="images/wall3.png" alt="تصميم ديكور راقي نمط 3">
+                    <img src="images/wall3.png" alt="Décor de mur style 3">
                     <div class="wall-overlay">
-                        <h4>تنسيق المنصات الفاخرة للمناسبات</h4>
+                        <h4>Scénographie de Prestige pour Événements</h4>
                     </div>
                 </div>
                 <div class="wall-item">
-                    <img src="images/wall4.png" alt="تصميم ديكور راقي نمط 4">
+                    <img src="images/wall4.png" alt="Décor de mur style 4">
                     <div class="wall-overlay">
-                        <h4>ثيمات مخصصة ومبتكرة بالكامل</h4>
+                        <h4>Thèmes Entièrement Personnalisés</h4>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- الفوتر وقسم تواصل الاتصال الفخم -->
+    <!-- Pied de page & Contact -->
     <footer id="contact">
         <div class="fade-in-up">
-            <h2>دعنا نخطط لحدثك القادم معاً</h2>
-            <p class="footer-tagline">Memorable Events | لأن كل لحظة تستحق الفخامة</p>
+            <h2>Planifions votre prochain événement ensemble</h2>
+            <p class="footer-tagline">Memorable Events | Parce que chaque instant mérite le luxe</p>
         </div>
         
         <div class="whatsapp-section fade-in-up">
-            <a href="https://wa.me/+212674155948" class="whatsapp-btn-luxury" target="_blank">
-                <span>تواصل معنا مباشرة عبر واتساب الأعمال</span>
+            <a href="https://wa.me/212674155948" class="whatsapp-btn-luxury" target="_blank">
+                <span>Contactez-nous directement sur WhatsApp</span>
             </a>
         </div>
 
         <div class="footer-divider"></div>
-        <p class="copyright">&copy; 2026 Memorable Events. جميع الحقوق محفوظة. صُمم بكل حُب وفخامة.</p>
+        <p class="copyright">&copy; 2026 Memorable Events. Tous droits réservés. Conçu avec amour et prestige.</p>
     </footer>
 
-    <!-- سكريبت حركات التمرير والانتقالات الذكية (Intersection Observer) -->
+    <!-- Script d'animation (Intersection Observer) -->
     <script>
         const observerOptions = {
             root: null,
@@ -640,12 +639,11 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('appear');
-                    observer.unobserve(entry.target); // تشغيل الحركة مرة واحدة فقط لضمان تجربة تصفح سلسة ومحترفة
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        // تفعيل الانميشن على كل العناصر المحددة
         document.querySelectorAll('.fade-in-up').forEach(element => {
             observer.observe(element);
         });
